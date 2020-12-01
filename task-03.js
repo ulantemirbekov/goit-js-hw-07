@@ -16,9 +16,23 @@ const images = [
     },
 ];
 
+
 const galleryRef = document.querySelector('#gallery');
 
-images.forEach(image => {
-    galleryRef.insertAdjacentHTML('beforeend',
-        `<li><img src=${image.url} alt=${image.alt}></li>`);
-});
+// ========== first solution ==========
+
+// images.forEach(image => {
+//     galleryRef.insertAdjacentHTML('beforeend',
+//         `<li><img src=${image.url} alt=${image.alt}></li>`);
+// });
+
+
+// ========== second solution ==========
+
+const imgMarkup = images.reduce((acc, image) => {
+    acc += `<li><img src=${image.url} alt=${image.alt}></li>`
+    return acc;
+}, '');
+
+galleryRef.insertAdjacentHTML('beforeend', imgMarkup)
+
